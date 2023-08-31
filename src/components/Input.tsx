@@ -5,10 +5,27 @@ import TextField from '@mui/material/TextField'
 type InputProps = {
 	name: string
 	value: string
+	type: 'text' | 'email'
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void
+	error?: string
+	touched?: boolean
+	onBlur?: {
+		(e: React.FocusEvent<unknown, Element>): void
+		<T = unknown>(fieldOrEvent: T): T extends string
+			? (e: unknown) => void
+			: void
+	}
 }
 
-const Input = ({ name, value, handleChange }: InputProps) => {
+const Input = ({
+	name,
+	value,
+	handleChange,
+	type,
+	error,
+	touched,
+	onBlur
+}: InputProps) => {
 	return (
 		<Box
 			component="form"
@@ -18,14 +35,17 @@ const Input = ({ name, value, handleChange }: InputProps) => {
 			autoComplete="off"
 		>
 			<TextField
+				type={type}
 				name={name}
 				value={value}
 				onChange={handleChange}
 				sx={{ input: { color: 'white', borderColor: 'white' } }}
 				id="name"
-				label="Name"
+				label={name}
 				variant="outlined"
+				error={error && touched ? true : false}
 				color="primary"
+				onBlur={onBlur}
 			/>
 		</Box>
 	)
