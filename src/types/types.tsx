@@ -18,10 +18,12 @@ export interface DogState {
 	searchUrl: string
 	nextUrl: string
 	prevUrl: string
-	dogs: Dog[] | []
+	selectedBreeds: string[]
+	maxeAge?: string
+	minAge?: string
 }
+
 export interface DogContextData extends DogState {
-	breeds: [] | string[]
 	updateDogState?: (arg: DogState) => void
 	updateBreeds?: (arg: string[]) => void
 }

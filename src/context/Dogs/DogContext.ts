@@ -7,8 +7,7 @@ export const DogContext = createContext<DogContextData>({
 	searchUrl: '/dogs/search?sort=breed:desc',
 	nextUrl: '',
 	prevUrl: '',
-	dogs: [],
-	breeds: []
+	selectedBreeds: []
 })
 
 export const useDogs = () => useContext(DogContext)

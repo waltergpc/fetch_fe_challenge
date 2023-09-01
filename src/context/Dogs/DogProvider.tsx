@@ -6,23 +6,23 @@ const initialState = {
 	searchUrl: '/dogs/search?sort=breed:desc',
 	nextUrl: '',
 	prevUrl: '',
-	dogs: []
+	selectedBreeds: []
 }
 
 export const DogProvider = ({ children }: ProviderProps) => {
 	const [dogState, setDogState] = useState<DogState>(initialState)
-	const [dogBreeds, setDogBreeds] = useState<string[]>([])
+	const [selectedBreeds, setSelectedBreeds] = useState<string[]>([])
 
 	const updateDogState = (newState: DogState) => {
 		setDogState({ ...dogState, ...newState })
 	}
 	const updateBreeds = (breedsArr: string[]) => {
-		setDogBreeds([...breedsArr])
+		setSelectedBreeds([...breedsArr])
 	}
 
 	return (
 		<DogContext.Provider
-			value={{ ...dogState, breeds: dogBreeds, updateDogState, updateBreeds }}
+			value={{ ...dogState, selectedBreeds, updateDogState, updateBreeds }}
 		>
 			{children}
 		</DogContext.Provider>

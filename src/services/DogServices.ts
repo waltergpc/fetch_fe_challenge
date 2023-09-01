@@ -2,7 +2,7 @@ import { Dog, DogIdResponse } from '../types/types'
 import customFetch from '../utils/customAxiosInstance'
 
 export const getBreeds = async () => {
-	const { data } = await customFetch.get<string[]>('/dogs/breeds')
+	const { data } = await customFetch.get<string[]>('/api/dogs/breeds')
 	return data
 }
 
@@ -12,7 +12,7 @@ export const getDogIds = async (searchUrl: string) => {
 }
 
 export const getDogsArray = async (idsArray: string[]) => {
-	const { data } = await customFetch.post<Dog[]>('/dogs', idsArray)
+	const { data } = await customFetch.post<Dog[]>('/api/dogs', idsArray)
 	return data
 }
 
