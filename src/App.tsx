@@ -4,7 +4,9 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login'
 import Dogs from './pages/Dogs'
-import { AuthProvider } from './context/AuthProvider'
+import { AuthProvider } from './context/Auth/AuthProvider'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { DogProvider } from './context/Dogs/DogProvider'
 
 const queryClient = new QueryClient()
 
@@ -22,9 +24,12 @@ const router = createBrowserRouter([
 function App() {
 	return (
 		<AuthProvider>
-			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
-			</QueryClientProvider>
+			<DogProvider>
+				<QueryClientProvider client={queryClient}>
+					<RouterProvider router={router} />
+					<ReactQueryDevtools initialIsOpen={true} />
+				</QueryClientProvider>
+			</DogProvider>
 		</AuthProvider>
 	)
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AuthContext } from './AuthContext'
-import { ProviderProps } from '../types/types'
+import { ProviderProps } from '../../types/types'
 
 export const AuthProvider = ({ children }: ProviderProps) => {
 	const [isAuth, setIsAuth] = useState(false)

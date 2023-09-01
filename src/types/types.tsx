@@ -20,3 +20,15 @@ export interface DogState {
 	prevUrl: string
 	dogs: Dog[] | []
 }
+export interface DogContextData extends DogState {
+	breeds: [] | string[]
+	updateDogState?: (arg: DogState) => void
+	updateBreeds?: (arg: string[]) => void
+}
+
+export interface DogIdResponse {
+	resultIds: string[]
+	next: string
+	prev?: string
+	total: number
+}
