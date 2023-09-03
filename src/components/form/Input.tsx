@@ -9,6 +9,7 @@ type InputProps = {
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void
 	error?: string
 	touched?: boolean
+	label?: string
 	onBlur?: {
 		(e: React.FocusEvent<unknown, Element>): void
 		<T = unknown>(fieldOrEvent: T): T extends string
@@ -24,6 +25,7 @@ const Input = ({
 	type,
 	error,
 	touched,
+	label,
 	onBlur
 }: InputProps) => {
 	return (
@@ -39,9 +41,16 @@ const Input = ({
 				name={name}
 				value={value}
 				onChange={handleChange}
-				sx={{ input: { color: 'white', borderColor: 'white' } }}
+				sx={{
+					input: {
+						color: 'white',
+						borderColor: '#7b430b',
+						fill: 'white',
+						backgroundColor: 'white'
+					}
+				}}
 				id="name"
-				label={name}
+				label={label || name}
 				variant="outlined"
 				error={error && touched ? true : false}
 				color="primary"

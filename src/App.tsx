@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { PrimeReactProvider } from 'primereact/api'
 import './App.css'
-
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login'
 import Dogs from './pages/Dogs'
@@ -23,14 +25,16 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		<AuthProvider>
-			<DogProvider>
-				<QueryClientProvider client={queryClient}>
-					<RouterProvider router={router} />
-					<ReactQueryDevtools initialIsOpen={true} />
-				</QueryClientProvider>
-			</DogProvider>
-		</AuthProvider>
+		<PrimeReactProvider>
+			<AuthProvider>
+				<DogProvider>
+					<QueryClientProvider client={queryClient}>
+						<RouterProvider router={router} />
+						<ReactQueryDevtools initialIsOpen={true} />
+					</QueryClientProvider>
+				</DogProvider>
+			</AuthProvider>
+		</PrimeReactProvider>
 	)
 }
 

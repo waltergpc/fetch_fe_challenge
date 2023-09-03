@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import Input from '../components/Input'
+import Input from '../components/form/Input'
 import { useQuery } from '@tanstack/react-query'
 import { login } from '../services/LoginService'
 import { UserData } from '../types/types'

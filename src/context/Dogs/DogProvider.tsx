@@ -6,14 +6,17 @@ const initialState = {
 	searchUrl: '/dogs/search?sort=breed:desc',
 	nextUrl: '',
 	prevUrl: '',
-	selectedBreeds: []
+	selectedBreeds: [],
+	total: 0,
+	maxAge: '',
+	minAge: ''
 }
 
 export const DogProvider = ({ children }: ProviderProps) => {
 	const [dogState, setDogState] = useState<DogState>(initialState)
 	const [selectedBreeds, setSelectedBreeds] = useState<string[]>([])
 
-	const updateDogState = (newState: DogState) => {
+	const updateDogState = (newState: Partial<DogState>) => {
 		setDogState({ ...dogState, ...newState })
 	}
 	const updateBreeds = (breedsArr: string[]) => {
