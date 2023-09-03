@@ -7,7 +7,7 @@ export const getBreeds = async () => {
 }
 
 export const getDogIds = async (searchUrl: string) => {
-	const { data } = await customFetch.get<DogIdResponse>(searchUrl)
+	const { data } = await customFetch.get<DogIdResponse>(`/api/${searchUrl}`)
 	return data
 }
 

@@ -6,14 +6,10 @@ import { SearchParams } from '../../types/types'
 import MultipleSelect from '../form/MultipleSelect'
 import { useDogs } from '../../context/Dogs/DogContext'
 import Input from '../form/Input'
+import { createFinalSearchUrl } from '../../utils/addStringToUrl'
 
 const SearchBar = () => {
 	const { selectedBreeds, maxAge, minAge, updateDogState } = useDogs()
-	const initialSearchValues: SearchParams = {
-		selectedBreeds: [],
-		maxAge: '',
-		minAge: ''
-	}
 
 	const updateSearchValues = (searchParams: SearchParams) => {
 		if (
@@ -21,7 +17,8 @@ const SearchBar = () => {
 			maxAge !== searchParams.maxAge ||
 			minAge !== searchParams.minAge
 		) {
-			updateDogState(values)
+			const newUrl = createFinalSearchUrl(searchParams)
+			updateDogState({ ...values, page: 1, searchUrl: newUrl })
 		} else {
 			return
 		}
@@ -30,7 +27,9 @@ const SearchBar = () => {
 	const { values, handleChange, handleSubmit, errors, touched, handleBlur } =
 		useFormik({
 			initialValues: {
-				...initialSearchValues
+				selectedBreeds,
+				maxAge,
+				minAge
 			},
 			onSubmit: () => {
 				updateSearchValues(values)
@@ -49,6 +48,7 @@ const SearchBar = () => {
 	if (isLoading) {
 		return <pre>Loading...</pre>
 	}
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<h3>Search dogs by:</h3>

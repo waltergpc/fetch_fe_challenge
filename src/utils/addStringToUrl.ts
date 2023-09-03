@@ -1,24 +1,25 @@
 import { SearchParams } from '../types/types'
 
-export const createUrlStringFromArray = (array: string[]) => {
-	let finalQueryString = ''
-	array.forEach((element) => {
-		finalQueryString += `breed=${element}&`
-	})
-
-	finalQueryString = finalQueryString.slice(0, -1)
-
-	return finalQueryString
-}
-
-export const createFinalSearchUrl = (searchParams: SearchParams) => {
+export const createFinalSearchUrl = (
+	searchParams: SearchParams,
+	page?: number,
+	skip?: number
+) => {
 	const { selectedBreeds, maxAge, minAge } = searchParams
-	let queryString = '/dogs/search?'
+
+	if (!skip) skip = 25
+
+	const cursor = page ? (page - 1) * skip : 0
+
+	let queryString = '/dogs/search?sort=breed:asc'
+
 	if (selectedBreeds.length > 0) {
 		selectedBreeds.forEach((breed) => {
-			queryString += `breed=${breed}`
+			queryString += `&breeds=${breed}&`
 		})
+		queryString = queryString.slice(0, -1)
 	}
+
 	if (maxAge) {
 		queryString += `&maxAge=${maxAge}`
 	}
@@ -26,7 +27,7 @@ export const createFinalSearchUrl = (searchParams: SearchParams) => {
 		queryString += `&minAge=${minAge}`
 	}
 
-	queryString += 'size=25&from=0'
+	queryString += `&size=${skip}&from=${cursor}`
 
 	return queryString
 }

@@ -16,19 +16,20 @@ export interface Dog {
 
 export interface SearchParams {
 	selectedBreeds: string[]
-	maxAge?: string
-	minAge?: string
+	maxAge: string
+	minAge: string
 }
 
 export interface DogState extends SearchParams {
 	searchUrl: string
-	nextUrl: string
-	prevUrl: string
+	page: number
+	skip: number
 }
 
 export interface DogContextData extends DogState {
 	updateDogState: (arg: Partial<DogState>) => void
 	updateBreeds?: (arg: string[]) => void
+	selectedIds: string[]
 }
 
 export interface DogIdResponse {
