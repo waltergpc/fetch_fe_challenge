@@ -44,9 +44,7 @@ const Input = ({
 				sx={{
 					input: {
 						color: 'white',
-						borderColor: '#7b430b',
-						fill: 'white',
-						backgroundColor: 'white'
+						borderColor: '#7b430b'
 					}
 				}}
 				id="name"

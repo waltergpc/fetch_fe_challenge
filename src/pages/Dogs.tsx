@@ -15,7 +15,9 @@ const Dogs = () => {
 		updateDogState,
 		selectedBreeds,
 		maxAge,
-		minAge
+		minAge,
+		selectedDogs,
+		updateSelectedDogs
 	} = useDogs()
 
 	const { data, isLoading, isError } = useQuery({
@@ -59,7 +61,14 @@ const Dogs = () => {
 		<section>
 			<h2>Dogs</h2>
 			<SearchBar />
-			<Table items={data.dogs} columns={columns} />
+			<Table
+				items={data.dogs}
+				columns={columns}
+				selectionParams={{ single: false }}
+				enableSelection={true}
+				selectedItems={selectedDogs}
+				onSelectionChange={updateSelectedDogs}
+			/>
 			<Pagination
 				page={page}
 				rowsPerPage={skip}

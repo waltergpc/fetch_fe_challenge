@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { ProviderProps, DogState } from '../../types/types'
+import { ProviderProps, DogState, Dog } from '../../types/types'
 import { DogContext } from './DogContext'
+import { toast } from 'react-toastify'
 
 const initialState = {
 	searchUrl: '/dogs/search?sort=breed:asc&size=25&from=0',
@@ -14,18 +15,22 @@ const initialState = {
 
 export const DogProvider = ({ children }: ProviderProps) => {
 	const [dogState, setDogState] = useState<DogState>(initialState)
-	const [selectedIds, setSelectedIds] = useState<string[]>([])
+	const [selectedDogs, setSelectedDogs] = useState<Dog[]>([])
 
 	const updateDogState = (newState: Partial<DogState>) => {
 		setDogState({ ...dogState, ...newState })
 	}
-	const updateBreeds = (breedsArr: string[]) => {
-		setSelectedIds([...breedsArr])
+	const updateSelectedDogs = (dogsArr: Dog[]) => {
+		if (dogsArr.length > 100) {
+			toast.error('Cannot select over 100 dogs')
+			return
+		}
+		setSelectedDogs([...dogsArr])
 	}
 
 	return (
 		<DogContext.Provider
-			value={{ ...dogState, selectedIds, updateDogState, updateBreeds }}
+			value={{ ...dogState, selectedDogs, updateDogState, updateSelectedDogs }}
 		>
 			{children}
 		</DogContext.Provider>
