@@ -32,7 +32,8 @@ export const getDogsQuery = async (searchUrl: string) => {
 }
 
 export const getMatchedDog = async (dogsArr: Dog[]) => {
-	const { data } = await customFetch.post<Match>('/api/dogs/match', dogsArr)
+	const idsArr = dogsArr.map((dog) => dog.id)
+	const { data } = await customFetch.post<Match>('/api/dogs/match', idsArr)
 	const dogs = await getDogsArray([data.match])
 	const matchedDog = dogs[0]
 	return matchedDog
