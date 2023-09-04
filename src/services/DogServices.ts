@@ -1,4 +1,4 @@
-import { Dog, DogIdResponse } from '../types/types'
+import { Dog, DogIdResponse, Match } from '../types/types'
 import customFetch from '../utils/customAxiosInstance'
 
 export const getBreeds = async () => {
@@ -29,4 +29,11 @@ export const getDogsQuery = async (searchUrl: string) => {
 		prevUrl,
 		total
 	}
+}
+
+export const getMatchedDog = async (dogsArr: Dog[]) => {
+	const { data } = await customFetch.post<Match>('/api/dogs/match', dogsArr)
+	const dogs = await getDogsArray([data.match])
+	const matchedDog = dogs[0]
+	return matchedDog
 }

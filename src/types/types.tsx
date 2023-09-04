@@ -38,3 +38,7 @@ export interface DogIdResponse {
 	prev?: string
 	total: number
 }
+
+export interface Match {
+	match: string
+}

@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import SearchBar from '../components/searchbar/SearchBar'
 import { useDogs } from '../context/Dogs/DogContext'
-import { getDogsQuery } from '../services/DogServices'
+import { getDogsQuery, getMatchedDog } from '../services/DogServices'
 import Table from '../components/table/Table'
-import { Dog } from '../types/types'
 import Pagination from '../components/table/Pagination'
 import { createFinalSearchUrl } from '../utils/addStringToUrl'
+import { columns } from '../utils/dogTableColumns'
 
 const Dogs = () => {
 	const {
@@ -25,19 +25,17 @@ const Dogs = () => {
 		queryFn: () => getDogsQuery(searchUrl)
 	})
 
-	const columns = [
-		{ field: 'name', header: 'Name' },
-		{ field: 'age', header: 'Age' },
-		{ field: 'zip_code', header: 'Zip Code' },
-		{
-			field: 'img',
-			header: 'Photo',
-			body: (dog: Dog) => (
-				<img src={dog.img} alt={`${dog.name} photo`} className="dog-img" />
-			)
-		},
-		{ field: 'breed', header: 'Breed' }
-	]
+	const {
+		data: matchDogData,
+		isLoading: isMatchLoading,
+		isError: isMatchError
+	} = useQuery({
+		queryKey: ['match'],
+		queryFn: () => getMatchedDog(selectedDogs),
+		enabled: false
+	})
+
+	console.log(matchDogData, isMatchLoading, isMatchError)
 
 	const onPageChange = (newPage: number, newSkip: number) => {
 		if (newPage !== page || newSkip !== skip) {
@@ -57,6 +55,7 @@ const Dogs = () => {
 	if (isError) {
 		return <h4>An error happened, please try again later</h4>
 	}
+
 	return (
 		<section>
 			<h2>Dogs</h2>
