@@ -20,6 +20,13 @@ const SearchBar = () => {
 		resetState
 	} = useDogs()
 
+	const initialState = {
+		selectedBreeds: [],
+		maxAge: '',
+		minAge: '',
+		sortOrder: 'asc'
+	}
+
 	const updateSearchValues = (searchParams: SearchParams) => {
 		if (
 			selectedBreeds !== searchParams.selectedBreeds ||
@@ -54,9 +61,9 @@ const SearchBar = () => {
 			updateSearchValues(values)
 		},
 		onReset: () => {
+			resetForm({ values: initialState })
 			resetState()
 			updateSearchValues(values)
-			resetForm()
 		},
 		validationSchema: Yup.object({
 			breeds: Yup.array().of(Yup.string()),

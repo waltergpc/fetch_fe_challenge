@@ -1,7 +1,7 @@
 :root {
   --orange-color: #ffa900;
   --light-purple: #890a74;
-  --dark-purple: #300d38;
+  --dark-purple: #4d165a;
   --indigo-color: #6610f2;
   --yellow-color: #ffdf02;
 }
@@ -59,7 +59,7 @@
 
 
 .searchbar {
-  background-color: var(--light-purple);
+  background-color: var(--dark-purple);
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
