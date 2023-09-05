@@ -7,7 +7,7 @@ type ModalProps = {
 	content?: Dog
 	headerText: string
 	onHide: () => void
-	FooterContent?: () => JSX.Element
+	FooterContent?: JSX.Element
 	isLoading?: boolean
 	error?: boolean
 	errorMessage?: string

@@ -16,7 +16,7 @@ const MultipleSelect = ({
 	onChange
 }: SelectProps) => {
 	return (
-		<div className="card flex justify-content-center">
+		<div className="card flex justify-content-center flex-direction-row">
 			<label>{label}</label>
 			<MultiSelect
 				value={value}
@@ -26,7 +26,7 @@ const MultipleSelect = ({
 				display="chip"
 				placeholder="Filter by Breed"
 				className="w-full md:w-20rem"
-				maxSelectedLabels={2}
+				maxSelectedLabels={1}
 			/>
 		</div>
 	)

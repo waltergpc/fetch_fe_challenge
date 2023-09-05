@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField'
 
 type InputProps = {
 	name: string
+	className?: string
 	value: string
 	type: 'text' | 'email'
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -26,7 +27,8 @@ const Input = ({
 	error,
 	touched,
 	label,
-	onBlur
+	onBlur,
+	className
 }: InputProps) => {
 	return (
 		<Box
@@ -47,12 +49,16 @@ const Input = ({
 						borderColor: '#7b430b'
 					}
 				}}
+				InputLabelProps={{
+					style: { color: '#fff' }
+				}}
 				id="name"
 				label={label || name}
 				variant="outlined"
 				error={error && touched ? true : false}
 				color="primary"
 				onBlur={onBlur}
+				className={className}
 			/>
 		</Box>
 	)

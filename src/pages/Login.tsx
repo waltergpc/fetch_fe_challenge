@@ -44,8 +44,8 @@ const Login = () => {
 	}
 
 	return (
-		<>
-			<form onSubmit={handleSubmit}>
+		<section className="grid-layout page-section">
+			<form onSubmit={handleSubmit} className="login-card">
 				<Input
 					name="name"
 					value={values.name}
@@ -54,6 +54,7 @@ const Login = () => {
 					error={errors.name}
 					touched={touched.name}
 					onBlur={handleBlur}
+					className="input-background"
 				/>
 
 				<Input
@@ -64,10 +65,11 @@ const Login = () => {
 					error={errors.email}
 					touched={touched.email}
 					onBlur={handleBlur}
+					className="input-background"
 				/>
 				<button type="submit">Login</button>
 			</form>
-		</>
+		</section>
 	)
 }
 

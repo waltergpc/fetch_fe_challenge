@@ -50,7 +50,7 @@ const SearchBar = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="searchbar">
 			<h3>Search dogs by:</h3>
 
 			<MultipleSelect
@@ -69,6 +69,7 @@ const SearchBar = () => {
 				error={errors.maxAge}
 				touched={touched.minAge}
 				onBlur={handleBlur}
+				className="input-background"
 			/>
 			<Input
 				name="minAge"
@@ -79,6 +80,7 @@ const SearchBar = () => {
 				error={errors.minAge}
 				touched={touched.minAge}
 				onBlur={handleBlur}
+				className="input-background"
 			/>
 
 			<button type="submit">Search</button>

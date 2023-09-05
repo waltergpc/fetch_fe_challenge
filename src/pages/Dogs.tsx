@@ -7,7 +7,7 @@ import Pagination from '../components/table/Pagination'
 import { createFinalSearchUrl } from '../utils/addStringToUrl'
 import { columns } from '../utils/dogTableColumns'
 import Modal from '../components/modal/Modal'
-import ModalFooter from '../components/modal/ModalFooter'
+import ModalFooterButtons from '../components/modal/ModalFooterButtons'
 import { MouseEvent, useState } from 'react'
 
 const Dogs = () => {
@@ -38,14 +38,18 @@ const Dogs = () => {
 	} = useQuery({
 		queryKey: ['match'],
 		queryFn: () => getMatchedDog(selectedDogs),
-		enabled: false,
-		staleTime: 3000
+		enabled: false
 	})
 
 	const handleMatchSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 		await refetchMatch()
 		setIsModalOpen(true)
+	}
+
+	const handleSelectionReset = () => {
+		setIsModalOpen(false)
+		updateSelectedDogs([])
 	}
 
 	const onPageChange = (newPage: number, newSkip: number) => {
@@ -68,19 +72,35 @@ const Dogs = () => {
 	}
 
 	return (
-		<section>
+		<section className="section section-center">
 			<h2>Dogs</h2>
 			<SearchBar />
-			<button type="submit" onClick={handleMatchSubmit}>
-				Find Match
-			</button>
+			<div>
+				<button type="submit" onClick={handleMatchSubmit}>
+					Find Match
+				</button>
+				{matchDogData && (
+					<button type="submit" onClick={() => setIsModalOpen(true)}>
+						See current Match
+					</button>
+				)}
+			</div>
 
 			<Modal
 				visible={isModalOpen}
 				headerText="Meet your adoption match Pal!"
 				content={matchDogData}
 				onHide={() => setIsModalOpen(false)}
-				FooterContent={ModalFooter}
+				FooterContent={
+					<ModalFooterButtons
+						firstText="Continue with this match"
+						secondText="Select Again"
+						secondCallback={handleSelectionReset}
+						firstCallback={() => {
+							console.log('Continue with documentation')
+						}}
+					/>
+				}
 				isLoading={isMatchLoading}
 				error={isMatchError}
 				errorMessage="An error happened while getting your matched buddy, please try again later"

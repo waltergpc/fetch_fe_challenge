@@ -1,13 +1,39 @@
+:root {
+  --orange-color: #ffa900;
+  --light-purple: #890a74;
+  --dark-purple: #300d38;
+  --indigo-color: #6610f2;
+  --yellow-color: #ffdf02;
+}
+
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+.section {
+  padding: 2.5rem 0;
+}
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  /*max-width: var(--max-width);*/
+}
+
+.grid-layout {
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .card {
   padding: 2em;
+}
+
+.input-background {
+  background-color: rgba(36, 36, 36, 0.76)
 }
 
 .dog-img {
@@ -16,4 +42,45 @@
   border-radius: 1rem;
 }
 
+.searchbar {
+  background-color: var(--light-purple);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: bold;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.flex-column {
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.login-card {
+  background: linear-gradient(0.25turn, var(--orange-color), var(--yellow-color));
+  display: grid;
+  gap: 1rem;
+  justify-items: center;;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  box-shadow: rgba(212, 173, 18, 0.35) 0px 5px 15px;
+}
+
+.page-section {
+  padding-top: 7rem;
+}
+
+@media screen and (min-width: 992px) {
+  .login-card {
+    width: 40vw;
+  }
+
+  .page-section {
+    padding-top: 12rem;
+  }
+  
+}
 

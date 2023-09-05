@@ -7,6 +7,7 @@ export const DogContext = createContext<DogContextData>({
 	searchUrl: '/dogs/search?sort=breed:asc&size=25&from=0',
 	selectedBreeds: [],
 	updateDogState: () => {},
+	updateSelectedDogs: () => {},
 	maxAge: '',
 	minAge: '',
 	page: 1,

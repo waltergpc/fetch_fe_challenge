@@ -28,7 +28,7 @@ export interface DogState extends SearchParams {
 
 export interface DogContextData extends DogState {
 	updateDogState: (arg: Partial<DogState>) => void
-	updateSelectedDogs?: (arg: Dog[]) => void
+	updateSelectedDogs: (arg: Dog[]) => void
 	selectedDogs: Dog[]
 }
 
