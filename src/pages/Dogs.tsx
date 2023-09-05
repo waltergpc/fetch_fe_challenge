@@ -8,6 +8,7 @@ import { createFinalSearchUrl } from '../utils/addStringToUrl'
 import { columns } from '../utils/dogTableColumns'
 import Modal from '../components/modal/Modal'
 import ModalFooterButtons from '../components/modal/ModalFooterButtons'
+import { ProgressSpinner } from 'primereact/progressspinner'
 import { MouseEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -85,7 +86,11 @@ const Dogs = () => {
 	}
 
 	if (isLoading) {
-		return <pre>Loading...</pre>
+		return (
+			<section className="section section-center">
+				<ProgressSpinner />
+			</section>
+		)
 	}
 
 	if (isError) {
@@ -104,13 +109,13 @@ const Dogs = () => {
 
 	return (
 		<section>
-			<h3>Find your next buddy by selecting your favorite dogs!</h3>
-			<h4>
-				Select up to a 100 dogs and click the button to fin a potential match
-			</h4>
-			<h4>
-				Each time you click, a new match will generate from the selection!
-			</h4>
+			<div>
+				<h4>Find your next buddy by selecting your favorite dogs!</h4>
+				<p>
+					Select up to a 100 dogs and click the button to fin a potential match
+					Each time you click, a new match will generate from the selection!
+				</p>
+			</div>
 			<SearchBar />
 			<div className="dog-page-btns">
 				<button

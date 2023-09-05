@@ -18,11 +18,19 @@ const queryClient = new QueryClient()
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Login />
+		element: (
+			<Layout>
+				<Login />
+			</Layout>
+		)
 	},
 	{
 		path: '/dogs',
-		element: <Dogs />
+		element: (
+			<Layout>
+				<Dogs />
+			</Layout>
+		)
 	}
 ])
 
@@ -32,11 +40,9 @@ function App() {
 			<AuthProvider>
 				<DogProvider>
 					<QueryClientProvider client={queryClient}>
-						<Layout>
-							<ToastContainer />
-							<RouterProvider router={router} />
-							<ReactQueryDevtools initialIsOpen={true} />
-						</Layout>
+						<ToastContainer />
+						<RouterProvider router={router} />
+						<ReactQueryDevtools initialIsOpen={true} />
 					</QueryClientProvider>
 				</DogProvider>
 			</AuthProvider>

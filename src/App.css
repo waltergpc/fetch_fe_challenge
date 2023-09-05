@@ -55,6 +55,9 @@
 .full-navbar {
   width: 100vw
 }
+
+
+
 .searchbar {
   background-color: var(--light-purple);
   padding: 0.5rem;
@@ -89,9 +92,9 @@
   font-weight: 500;
 }
 
-.input-error {
-  color: red;
-  font-size: 12px;
+.error-span {
+  color: rgb(221, 47, 47);
+  
 }
 
 .dog-page-btns {
@@ -127,6 +130,10 @@
     width: 30px;
     height: 30px;
     margin-left: -15px;
+  }
+
+  .navbar-end {
+    justify-self: end;
   }
 
   .nav-toggle {

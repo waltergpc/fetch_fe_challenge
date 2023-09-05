@@ -33,7 +33,8 @@ const Login = () => {
 	const { refetch, isSuccess } = useQuery({
 		queryKey: ['login'],
 		queryFn: () => login({ name: values.name, email: values.email }),
-		enabled: false
+		enabled: false,
+		cacheTime: 0
 	})
 
 	const handleRefetch = async () => {
@@ -42,11 +43,13 @@ const Login = () => {
 
 	if (isSuccess) {
 		setIsAuthTrue(values.email)
+		console.log('RAN AGAIn')
 		navigate('/dogs')
 	}
 
 	return (
 		<section className="grid-layout page-section">
+			<h2>Fetch FE Exercise</h2>
 			<form onSubmit={handleSubmit} className="login-card">
 				<Input
 					name="name"

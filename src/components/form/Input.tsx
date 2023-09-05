@@ -63,6 +63,7 @@ const Input = ({
 				onBlur={onBlur}
 				className={className}
 			/>
+			{error && touched && <span className="error-span">{error}</span>}
 		</Box>
 	)
 }

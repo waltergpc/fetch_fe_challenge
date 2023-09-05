@@ -34,28 +34,35 @@ const SearchBar = () => {
 		}
 	}
 
-	const { values, handleChange, handleSubmit, errors, touched, handleBlur } =
-		useFormik({
-			initialValues: {
-				selectedBreeds,
-				maxAge,
-				minAge,
-				sortOrder
-			},
-			onSubmit: () => {
-				updateSearchValues(values)
-			},
-			onReset: () => {
-				resetState()
-				updateSearchValues(values)
-			},
-			validationSchema: Yup.object({
-				breeds: Yup.array().of(Yup.string()),
-				maxAge: Yup.number().max(20, 'Max age should be less than 20'),
-				minAge: Yup.number().min(0),
-				sortOrder: Yup.string()
-			})
+	const {
+		values,
+		handleChange,
+		handleSubmit,
+		errors,
+		touched,
+		handleBlur,
+		handleReset
+	} = useFormik({
+		initialValues: {
+			selectedBreeds,
+			maxAge,
+			minAge,
+			sortOrder
+		},
+		onSubmit: () => {
+			updateSearchValues(values)
+		},
+		onReset: () => {
+			resetState()
+			updateSearchValues(values)
+		},
+		validationSchema: Yup.object({
+			breeds: Yup.array().of(Yup.string()),
+			maxAge: Yup.number().max(20, 'Max age should be less than 20'),
+			minAge: Yup.number().min(0),
+			sortOrder: Yup.string()
 		})
+	})
 	const { data, isLoading } = useQuery({
 		queryKey: ['breeds'],
 		queryFn: getBreeds
@@ -108,7 +115,12 @@ const SearchBar = () => {
 				name="sortOrder"
 			/>
 
-			<button type="submit">Search</button>
+			<div>
+				<button type="submit">Search</button>
+				<button type="button" onClick={handleReset}>
+					Reset
+				</button>
+			</div>
 		</form>
 	)
 }

@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
 
 	const setIsAuthFalse = () => {
 		setIsAuth(false)
+		setEmail('')
 	}
 
 	return (

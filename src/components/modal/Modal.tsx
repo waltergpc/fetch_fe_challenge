@@ -1,6 +1,7 @@
 import { Dialog } from 'primereact/dialog'
 
 import { Dog } from '../../types/types'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 type ModalProps = {
 	visible: boolean
@@ -31,7 +32,7 @@ const Modal = ({
 				footer={FooterContent}
 			>
 				{isLoading ? (
-					<pre>Loading...</pre>
+					<ProgressSpinner />
 				) : (
 					<>
 						<h3>{content?.name}</h3>
