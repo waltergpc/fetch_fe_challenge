@@ -41,7 +41,8 @@ const SearchBar = () => {
 		errors,
 		touched,
 		handleBlur,
-		handleReset
+		handleReset,
+		resetForm
 	} = useFormik({
 		initialValues: {
 			selectedBreeds,
@@ -55,6 +56,7 @@ const SearchBar = () => {
 		onReset: () => {
 			resetState()
 			updateSearchValues(values)
+			resetForm()
 		},
 		validationSchema: Yup.object({
 			breeds: Yup.array().of(Yup.string()),
