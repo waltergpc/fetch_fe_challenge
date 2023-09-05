@@ -21,10 +21,10 @@ export const createFinalSearchUrl = (
 	}
 
 	if (maxAge) {
-		queryString += `&maxAge=${maxAge}`
+		queryString += `&ageMax=${maxAge}`
 	}
 	if (minAge) {
-		queryString += `&minAge=${minAge}`
+		queryString += `&ageMin=${minAge}`
 	}
 
 	queryString += `&size=${skip}&from=${cursor}`
