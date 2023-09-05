@@ -11,6 +11,7 @@ type SelectProps = {
 	value: OptionsObject | string
 	placeholder: string
 	name: string
+	label?: string
 }
 
 const Select = ({
@@ -18,14 +19,16 @@ const Select = ({
 	options,
 	value,
 	placeholder,
-	name
+	name,
+	label
 }: SelectProps) => {
 	const handleChange = (e: DropdownChangeEvent) => {
 		onChange(e)
 	}
 
 	return (
-		<div className="card flex justify-content-center">
+		<div className="flex-column multi-select">
+			<label>{label || name}</label>
 			<Dropdown
 				name={name}
 				value={value}

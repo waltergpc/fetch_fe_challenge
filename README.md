@@ -1,27 +1,25 @@
-# React + TypeScript + Vite
+# Fetch FE Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Repo will deploy a web app for fetch frontend challenge, in order to install please follow the next steps
 
-Currently, two official plugins are available:
+## Install Node and nvm
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you want to run this app using node JS, it is recommended to use NVM to adhere to the version of Node
+used for development. In case you do not have NVM please refer to their [repository](https://github.com/nvm-sh/nvm) and follow
+the instructions.
 
-## Expanding the ESLint configuration
+- After installation of NVM, once in the project folder run the command:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`nvm use 16.2.0`
 
-- Configure the top-level `parserOptions` property like this:
+## Install node and npm without nvm
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+If You want to run this repo without nvm and no node installation, please refer to [node](https://nodejs.org/es) webiste and follow the instructions.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+After this go to [npm](https://docs.npmjs.com/getting-started) and follow the instructions
+
+## Package and install :
+
+After either of both steps upwards, run the command:
+
+`npm i && npm start`

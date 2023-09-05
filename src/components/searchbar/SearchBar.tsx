@@ -92,6 +92,14 @@ const SearchBar = () => {
 				onChange={handleChange}
 				items={data || []}
 			/>
+			<Select
+				options={sortingOptions}
+				placeholder="Sort Order"
+				onChange={handleChange}
+				value={values.sortOrder}
+				name="sortOrder"
+				label="Breeds order"
+			/>
 			<Input
 				name="maxAge"
 				value={values.maxAge}
@@ -115,13 +123,6 @@ const SearchBar = () => {
 				touched={touched.minAge}
 				onBlur={handleBlur}
 				className="input-background"
-			/>
-			<Select
-				options={sortingOptions}
-				placeholder="Sort Order"
-				onChange={handleChange}
-				value={values.sortOrder}
-				name="sortOrder"
 			/>
 
 			<div>

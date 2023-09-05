@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
 				<div className="nav-center">
 					<div className="nav-header">
 						<img src={fetchLogo} alt="Fetch logo" />
-						{email && <h5>Welcome {email}</h5>}
+						{email && <h5 className="nav-text">Welcome {email}</h5>}
 					</div>
 					{isAuth && email && (
 						<button className="navbar-end" onClick={navLogout}>
