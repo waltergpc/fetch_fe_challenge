@@ -16,6 +16,7 @@
     "@tanstack/react-query": "^4.33.0",
     "@tanstack/react-query-devtools": "^4.33.0",
     "axios": "^1.5.0",
+    "bulma": "^0.9.4",
     "formik": "^2.4.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

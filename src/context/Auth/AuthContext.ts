@@ -2,10 +2,16 @@ import { createContext, useContext } from 'react'
 
 interface AuthContextProps {
 	isAuth: boolean
-	setIsAuthTrue?: () => void
-	setIsAuthFalse?: () => void
+	setIsAuthTrue: (email: string) => void
+	setIsAuthFalse: () => void
+	email: string
 }
 
-export const AuthContext = createContext<AuthContextProps>({ isAuth: false })
+export const AuthContext = createContext<AuthContextProps>({
+	isAuth: false,
+	email: '',
+	setIsAuthTrue: () => {},
+	setIsAuthFalse: () => {}
+})
 
 export const useAuth = () => useContext(AuthContext)

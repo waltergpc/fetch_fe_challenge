@@ -11,8 +11,14 @@ import Select from '../form/Select'
 import { sortingOptions } from '../../utils/selectOptions'
 
 const SearchBar = () => {
-	const { selectedBreeds, maxAge, minAge, sortOrder, updateDogState } =
-		useDogs()
+	const {
+		selectedBreeds,
+		maxAge,
+		minAge,
+		sortOrder,
+		updateDogState,
+		resetState
+	} = useDogs()
 
 	const updateSearchValues = (searchParams: SearchParams) => {
 		if (
@@ -37,6 +43,10 @@ const SearchBar = () => {
 				sortOrder
 			},
 			onSubmit: () => {
+				updateSearchValues(values)
+			},
+			onReset: () => {
+				resetState()
 				updateSearchValues(values)
 			},
 			validationSchema: Yup.object({

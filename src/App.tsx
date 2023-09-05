@@ -11,6 +11,7 @@ import { AuthProvider } from './context/Auth/AuthProvider'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { DogProvider } from './context/Dogs/DogProvider'
 import { ToastContainer } from 'react-toastify'
+import Layout from './components/layout/Layout'
 
 const queryClient = new QueryClient()
 
@@ -31,9 +32,11 @@ function App() {
 			<AuthProvider>
 				<DogProvider>
 					<QueryClientProvider client={queryClient}>
-						<ToastContainer />
-						<RouterProvider router={router} />
-						<ReactQueryDevtools initialIsOpen={true} />
+						<Layout>
+							<ToastContainer />
+							<RouterProvider router={router} />
+							<ReactQueryDevtools initialIsOpen={true} />
+						</Layout>
 					</QueryClientProvider>
 				</DogProvider>
 			</AuthProvider>

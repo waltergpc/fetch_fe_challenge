@@ -11,6 +11,7 @@ import ModalFooterButtons from '../components/modal/ModalFooterButtons'
 import { MouseEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/Auth/AuthContext'
 
 const Dogs = () => {
 	const {
@@ -25,6 +26,8 @@ const Dogs = () => {
 		selectedDogs,
 		updateSelectedDogs
 	} = useDogs()
+
+	const { isAuth } = useAuth()
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const navigate = useNavigate()
@@ -75,6 +78,10 @@ const Dogs = () => {
 				sortOrder
 			})
 		}
+	}
+
+	if (!isAuth) {
+		navigate('/')
 	}
 
 	if (isLoading) {
@@ -139,7 +146,7 @@ const Dogs = () => {
 				error={isMatchError}
 				errorMessage="An error happened while getting your matched buddy, please try again later"
 			/>
-
+			<span>Total: {data.total}</span>
 			<Table
 				items={data.dogs}
 				columns={columns}

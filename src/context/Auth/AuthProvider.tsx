@@ -4,8 +4,10 @@ import { ProviderProps } from '../../types/types'
 
 export const AuthProvider = ({ children }: ProviderProps) => {
 	const [isAuth, setIsAuth] = useState(false)
+	const [email, setEmail] = useState('')
 
-	const setIsAuthTrue = () => {
+	const setIsAuthTrue = (email: string) => {
+		setEmail(email)
 		setIsAuth(true)
 	}
 
@@ -14,7 +16,9 @@ export const AuthProvider = ({ children }: ProviderProps) => {
 	}
 
 	return (
-		<AuthContext.Provider value={{ isAuth, setIsAuthTrue, setIsAuthFalse }}>
+		<AuthContext.Provider
+			value={{ isAuth, email, setIsAuthTrue, setIsAuthFalse }}
+		>
 			{children}
 		</AuthContext.Provider>
 	)

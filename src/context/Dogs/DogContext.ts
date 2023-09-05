@@ -8,6 +8,7 @@ export const DogContext = createContext<DogContextData>({
 	selectedBreeds: [],
 	updateDogState: () => {},
 	updateSelectedDogs: () => {},
+	resetState: () => {},
 	maxAge: '',
 	minAge: '',
 	page: 1,

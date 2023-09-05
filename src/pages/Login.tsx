@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { login } from '../services/LoginService'
 import { UserData } from '../types/types'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/Auth/AuthContext'
 
 const Login = () => {
 	const initialFormValues: UserData = {
@@ -13,6 +14,7 @@ const Login = () => {
 	}
 
 	const navigate = useNavigate()
+	const { setIsAuthTrue } = useAuth()
 
 	const { values, handleChange, handleSubmit, errors, handleBlur, touched } =
 		useFormik({
@@ -39,7 +41,7 @@ const Login = () => {
 	}
 
 	if (isSuccess) {
-		console.log('HOOOOOOOOLA')
+		setIsAuthTrue(values.email)
 		navigate('/dogs')
 	}
 

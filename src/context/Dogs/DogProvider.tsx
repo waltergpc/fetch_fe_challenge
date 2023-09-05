@@ -29,9 +29,19 @@ export const DogProvider = ({ children }: ProviderProps) => {
 		setSelectedDogs([...dogsArr])
 	}
 
+	const resetState = () => {
+		setDogState(initialState)
+	}
+
 	return (
 		<DogContext.Provider
-			value={{ ...dogState, selectedDogs, updateDogState, updateSelectedDogs }}
+			value={{
+				...dogState,
+				selectedDogs,
+				updateDogState,
+				updateSelectedDogs,
+				resetState
+			}}
 		>
 			{children}
 		</DogContext.Provider>
