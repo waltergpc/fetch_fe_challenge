@@ -135,7 +135,7 @@ const Dogs = () => {
 
 			<Modal
 				visible={isModalOpen}
-				headerText="Meet your adoption match Pal!"
+				headerText="Meet your Pal!"
 				content={matchDogData}
 				onHide={() => setIsModalOpen(false)}
 				FooterContent={
