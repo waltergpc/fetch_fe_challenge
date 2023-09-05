@@ -1,10 +1,12 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
+import { toast } from 'react-toastify'
 
 type InputProps = {
 	name: string
 	className?: string
+	width?: string
 	value: string
 	type: 'text' | 'email'
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -28,13 +30,21 @@ const Input = ({
 	touched,
 	label,
 	onBlur,
-	className
+	className,
+	width
 }: InputProps) => {
+	useEffect(() => {
+		if (error) {
+			toast.error(error)
+		}
+	}, [error])
+
 	return (
 		<Box
 			component="form"
+			className="flex-column"
 			sx={{
-				'& > :not(style)': { m: 1, width: '25ch' }
+				'& > :not(style)': { m: 1, width: width ? width : '25ch' }
 			}}
 			autoComplete="off"
 		>

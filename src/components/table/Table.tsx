@@ -34,14 +34,16 @@ const Table = ({
 	return (
 		<div className="card">
 			<DataTable
+				className="table"
 				scrollable
 				selectionMode={'checkbox'}
 				onSelectionChange={onSelectChange}
 				selection={selectedItems}
 				scrollHeight="65vh"
 				value={items}
-				tableStyle={{ minWidth: '50rem' }}
+				tableStyle={{ minWidth: '55rem' }}
 				dataKey="id"
+				size="normal"
 			>
 				{enableSelection && (
 					<Column

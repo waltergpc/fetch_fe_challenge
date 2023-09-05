@@ -5,13 +5,13 @@ export const createFinalSearchUrl = (
 	page?: number,
 	skip?: number
 ) => {
-	const { selectedBreeds, maxAge, minAge } = searchParams
+	const { selectedBreeds, maxAge, minAge, sortOrder } = searchParams
 
 	if (!skip) skip = 25
 
 	const cursor = page ? (page - 1) * skip : 0
 
-	let queryString = '/dogs/search?sort=breed:asc'
+	let queryString = `/dogs/search?sort=breed:${sortOrder}`
 
 	if (selectedBreeds.length > 0) {
 		selectedBreeds.forEach((breed) => {

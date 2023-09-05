@@ -18,6 +18,7 @@ export interface SearchParams {
 	selectedBreeds: string[]
 	maxAge: string
 	minAge: string
+	sortOrder: string
 }
 
 export interface DogState extends SearchParams {

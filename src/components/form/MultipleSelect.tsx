@@ -16,7 +16,7 @@ const MultipleSelect = ({
 	onChange
 }: SelectProps) => {
 	return (
-		<div className="card flex justify-content-center flex-direction-row">
+		<div className="flex-column multi-select">
 			<label>{label}</label>
 			<MultiSelect
 				value={value}

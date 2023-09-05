@@ -9,12 +9,14 @@ import { columns } from '../utils/dogTableColumns'
 import Modal from '../components/modal/Modal'
 import ModalFooterButtons from '../components/modal/ModalFooterButtons'
 import { MouseEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const Dogs = () => {
 	const {
 		searchUrl,
 		page,
 		skip,
+		sortOrder,
 		updateDogState,
 		selectedBreeds,
 		maxAge,
@@ -34,7 +36,8 @@ const Dogs = () => {
 		data: matchDogData,
 		isLoading: isMatchLoading,
 		isError: isMatchError,
-		refetch: refetchMatch
+		refetch: refetchMatch,
+		isRefetching: isMatchRefectching
 	} = useQuery({
 		queryKey: ['match'],
 		queryFn: () => getMatchedDog(selectedDogs),
@@ -43,6 +46,10 @@ const Dogs = () => {
 
 	const handleMatchSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
+		if (selectedDogs.length < 1) {
+			toast.error('Please select at least 1 dog')
+			return
+		}
 		await refetchMatch()
 		setIsModalOpen(true)
 	}
@@ -55,11 +62,16 @@ const Dogs = () => {
 	const onPageChange = (newPage: number, newSkip: number) => {
 		if (newPage !== page || newSkip !== skip) {
 			const newUrl = createFinalSearchUrl(
-				{ selectedBreeds, maxAge, minAge },
+				{ selectedBreeds, maxAge, minAge, sortOrder },
 				newPage,
 				newSkip
 			)
-			updateDogState({ searchUrl: newUrl, page: newPage, skip: newSkip })
+			updateDogState({
+				searchUrl: newUrl,
+				page: newPage,
+				skip: newSkip,
+				sortOrder
+			})
 		}
 	}
 
@@ -72,10 +84,16 @@ const Dogs = () => {
 	}
 
 	return (
-		<section className="section section-center">
-			<h2>Dogs</h2>
+		<section>
+			<h3>Find your next buddy by selecting your favorite dogs!</h3>
+			<h4>
+				Select up to a 100 dogs and click the button to fin a potential match
+			</h4>
+			<h4>
+				Each time you click, a new match will generate from the selection!
+			</h4>
 			<SearchBar />
-			<div>
+			<div className="dog-page-btns">
 				<button type="submit" onClick={handleMatchSubmit}>
 					Find Match
 				</button>
@@ -97,14 +115,15 @@ const Dogs = () => {
 						secondText="Select Again"
 						secondCallback={handleSelectionReset}
 						firstCallback={() => {
-							console.log('Continue with documentation')
+							toast.success('Match!')
 						}}
 					/>
 				}
-				isLoading={isMatchLoading}
+				isLoading={isMatchLoading || isMatchRefectching}
 				error={isMatchError}
 				errorMessage="An error happened while getting your matched buddy, please try again later"
 			/>
+
 			<Table
 				items={data.dogs}
 				columns={columns}

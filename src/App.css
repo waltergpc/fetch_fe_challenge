@@ -29,7 +29,7 @@
 
 
 .card {
-  padding: 2em;
+  padding: 1rem;
 }
 
 .input-background {
@@ -42,10 +42,21 @@
   border-radius: 1rem;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-items: space-evenly;
+}
+
+.multi-select {
+  margin: 0.8rem;
+}
+
 .searchbar {
   background-color: var(--light-purple);
   padding: 0.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   font-weight: bold;
@@ -53,10 +64,7 @@
   padding: 1rem;
 }
 
-.flex-column {
-  flex-direction: column;
-  flex-wrap: wrap;
-}
+
 
 .login-card {
   background: linear-gradient(0.25turn, var(--orange-color), var(--yellow-color));
@@ -73,6 +81,23 @@
   padding-top: 7rem;
 }
 
+.table {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+.input-error {
+  color: red;
+  font-size: 12px;
+}
+
+.dog-page-btns {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem 1rem;
+}
+
+
 @media screen and (min-width: 992px) {
   .login-card {
     width: 40vw;
@@ -80,6 +105,15 @@
 
   .page-section {
     padding-top: 12rem;
+  }
+
+  .searchbar {
+    flex-direction: row;
+  }
+
+  .card {
+    display: grid;
+    justify-content: center;
   }
   
 }

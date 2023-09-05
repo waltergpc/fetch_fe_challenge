@@ -10,7 +10,8 @@ const initialState = {
 	page: 1,
 	skip: 25,
 	maxAge: '',
-	minAge: ''
+	minAge: '',
+	sortOrder: 'asc'
 }
 
 export const DogProvider = ({ children }: ProviderProps) => {

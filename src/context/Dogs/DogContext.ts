@@ -12,7 +12,8 @@ export const DogContext = createContext<DogContextData>({
 	minAge: '',
 	page: 1,
 	skip: 25,
-	selectedDogs: []
+	selectedDogs: [],
+	sortOrder: 'asc'
 })
 
 export const useDogs = () => useContext(DogContext)
