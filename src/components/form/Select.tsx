@@ -21,11 +21,9 @@ const Select = ({
 	name
 }: SelectProps) => {
 	const handleChange = (e: DropdownChangeEvent) => {
-		console.log(e.value)
-		onChange(e.value)
+		onChange(e)
 	}
 
-	console.log(value)
 	return (
 		<div className="card flex justify-content-center">
 			<Dropdown

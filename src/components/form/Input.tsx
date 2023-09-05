@@ -1,7 +1,6 @@
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent } from 'react'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import { toast } from 'react-toastify'
 
 type InputProps = {
 	name: string
@@ -33,12 +32,6 @@ const Input = ({
 	className,
 	width
 }: InputProps) => {
-	useEffect(() => {
-		if (error) {
-			toast.error(error)
-		}
-	}, [error])
-
 	return (
 		<Box
 			component="form"

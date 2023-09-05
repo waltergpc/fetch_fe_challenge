@@ -10,6 +10,7 @@ import Modal from '../components/modal/Modal'
 import ModalFooterButtons from '../components/modal/ModalFooterButtons'
 import { MouseEvent, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Dogs = () => {
 	const {
@@ -26,8 +27,9 @@ const Dogs = () => {
 	} = useDogs()
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const navigate = useNavigate()
 
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['dogs', searchUrl],
 		queryFn: () => getDogsQuery(searchUrl)
 	})
@@ -80,6 +82,16 @@ const Dogs = () => {
 	}
 
 	if (isError) {
+		if (
+			error instanceof Error &&
+			error.message === 'Request failed with status code 401'
+		) {
+			setTimeout(() => {
+				navigate('/')
+			}, 3000)
+			return <h4>You are unauthenticated, please login</h4>
+		}
+
 		return <h4>An error happened, please try again later</h4>
 	}
 
@@ -94,7 +106,11 @@ const Dogs = () => {
 			</h4>
 			<SearchBar />
 			<div className="dog-page-btns">
-				<button type="submit" onClick={handleMatchSubmit}>
+				<button
+					type="submit"
+					onClick={handleMatchSubmit}
+					disabled={selectedDogs.length < 1}
+				>
 					Find Match
 				</button>
 				{matchDogData && (
