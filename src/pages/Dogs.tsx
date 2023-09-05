@@ -109,6 +109,7 @@ const Dogs = () => {
 
 	return (
 		<section>
+			<SearchBar />
 			<div>
 				<h4>Find your next buddy by selecting your favorite dogs!</h4>
 				<p>
@@ -116,7 +117,7 @@ const Dogs = () => {
 					Each time you click, a new match will generate from the selection!
 				</p>
 			</div>
-			<SearchBar />
+
 			<div className="dog-page-btns">
 				<button
 					type="submit"
