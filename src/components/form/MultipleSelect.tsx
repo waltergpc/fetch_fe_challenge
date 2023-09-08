@@ -5,6 +5,7 @@ type SelectProps = {
 	name: string
 	label: string
 	value: string[]
+	id?: string
 	onChange: (e: MultiSelectChangeEvent) => void
 }
 
@@ -13,18 +14,20 @@ const MultipleSelect = ({
 	label,
 	name,
 	value,
+	id,
 	onChange
 }: SelectProps) => {
 	return (
 		<div className="flex-column multi-select">
-			<label>{label}</label>
+			<label htmlFor={id || name}>{label}</label>
 			<MultiSelect
 				value={value}
 				onChange={onChange}
 				options={items}
+				id={id || name}
 				name={name}
 				display="chip"
-				placeholder="Filter by Breed"
+				placeholder={`Select ${name}`}
 				className="w-full md:w-20rem"
 				maxSelectedLabels={1}
 			/>

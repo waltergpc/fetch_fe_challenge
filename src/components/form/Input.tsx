@@ -34,12 +34,11 @@ const Input = ({
 }: InputProps) => {
 	return (
 		<Box
-			component="form"
+			component="div"
 			className="flex-column"
 			sx={{
 				'& > :not(style)': { m: 1, width: width ? width : '25ch' }
 			}}
-			autoComplete="off"
 		>
 			<TextField
 				type={type}

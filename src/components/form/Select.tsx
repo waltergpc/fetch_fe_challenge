@@ -28,8 +28,10 @@ const Select = ({
 
 	return (
 		<div className="flex-column multi-select">
-			<label>{label || name}</label>
+			<label htmlFor={name}>{label || name}</label>
 			<Dropdown
+				aria-label={label}
+				id={name}
 				name={name}
 				value={value}
 				onChange={handleChange}
