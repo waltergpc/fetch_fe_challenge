@@ -18,7 +18,7 @@ describe('Testing cases for multiple select component', () => {
 			/>
 		)
 
-		const multiSelect = screen.getByText('Select breeds')
+		const multiSelect = screen.getByRole('listbox')
 		expect(multiSelect).toBeInTheDocument()
 	})
 	it('Should render a select component with a 3 and select 1', async () => {

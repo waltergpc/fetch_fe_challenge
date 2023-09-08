@@ -21,13 +21,14 @@ const MultipleSelect = ({
 		<div className="flex-column multi-select">
 			<label htmlFor={id || name}>{label}</label>
 			<MultiSelect
+				aria-label={label}
 				value={value}
 				onChange={onChange}
 				options={items}
 				id={id || name}
 				name={name}
 				display="chip"
-				placeholder={`Select ${name}`}
+				placeholder={label}
 				className="w-full md:w-20rem"
 				maxSelectedLabels={1}
 			/>
