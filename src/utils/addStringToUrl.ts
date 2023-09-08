@@ -20,10 +20,10 @@ export const createFinalSearchUrl = (
 		queryString = queryString.slice(0, -1)
 	}
 
-	if (maxAge) {
+	if (maxAge && Number(maxAge) > 0) {
 		queryString += `&ageMax=${maxAge}`
 	}
-	if (minAge) {
+	if (minAge && Number(minAge) > 0) {
 		queryString += `&ageMin=${minAge}`
 	}
 

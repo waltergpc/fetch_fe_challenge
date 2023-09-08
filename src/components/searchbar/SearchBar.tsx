@@ -11,21 +11,8 @@ import Select from '../form/Select'
 import { sortingOptions } from '../../utils/selectOptions'
 
 const SearchBar = () => {
-	const {
-		selectedBreeds,
-		maxAge,
-		minAge,
-		sortOrder,
-		updateDogState,
-		resetState
-	} = useDogs()
-
-	const initialState = {
-		selectedBreeds: [],
-		maxAge: '',
-		minAge: '',
-		sortOrder: 'asc'
-	}
+	const { selectedBreeds, maxAge, minAge, sortOrder, updateDogState } =
+		useDogs()
 
 	const updateSearchValues = (searchParams: SearchParams) => {
 		if (
@@ -41,37 +28,25 @@ const SearchBar = () => {
 		}
 	}
 
-	const {
-		values,
-		handleChange,
-		handleSubmit,
-		errors,
-		touched,
-		handleBlur,
-		handleReset,
-		resetForm
-	} = useFormik({
-		initialValues: {
-			selectedBreeds,
-			maxAge,
-			minAge,
-			sortOrder
-		},
-		onSubmit: () => {
-			updateSearchValues(values)
-		},
-		onReset: () => {
-			resetForm({ values: initialState })
-			resetState()
-			updateSearchValues(values)
-		},
-		validationSchema: Yup.object({
-			breeds: Yup.array().of(Yup.string()),
-			maxAge: Yup.number().max(20, 'Max age should be less than 20'),
-			minAge: Yup.number().min(0),
-			sortOrder: Yup.string()
+	const { values, handleChange, handleSubmit, errors, touched, handleBlur } =
+		useFormik({
+			initialValues: {
+				selectedBreeds,
+				maxAge,
+				minAge,
+				sortOrder
+			},
+			onSubmit: () => {
+				updateSearchValues(values)
+			},
+
+			validationSchema: Yup.object({
+				breeds: Yup.array().of(Yup.string()),
+				maxAge: Yup.number().max(20, 'Max age should be less than 20'),
+				minAge: Yup.number().min(0),
+				sortOrder: Yup.string()
+			})
 		})
-	})
 	const { data, isLoading } = useQuery({
 		queryKey: ['breeds'],
 		queryFn: getBreeds
@@ -127,9 +102,6 @@ const SearchBar = () => {
 
 			<div>
 				<button type="submit">Search</button>
-				<button type="button" onClick={handleReset}>
-					Reset
-				</button>
 			</div>
 		</form>
 	)
